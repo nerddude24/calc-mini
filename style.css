@@ -1,0 +1,21 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/* Make body full screen for centering */
+html,
+body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+
+	justify-content: center;
+	align-items: center;
+}
+
+.calculator {
+	
+}

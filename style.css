@@ -10,6 +10,8 @@ body {
 }
 
 body {
+	background-color: black;
+
 	display: flex;
 
 	justify-content: center;
@@ -17,18 +19,20 @@ body {
 }
 
 .calc {
-	border: 2px solid black;
+	border: 2px solid white;
+	background-color: black;
 	border-radius: 5px 5px 20px 5px;
-	height: 500px;
-	width: 400px;
+	height: 600px;
+	width: 500px;
 
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	padding: 7px;
 }
 
 .display {
+	background-color: skyblue;
+
 	flex: 1;
 
 	display: flex;
@@ -51,5 +55,11 @@ body {
 }
 
 button {
+	font-size: 28px;
+
 	flex: 1;
+}
+
+#eq-btn {
+	border-bottom-right-radius: 20px;
 }

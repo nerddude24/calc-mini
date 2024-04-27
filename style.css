@@ -16,6 +16,40 @@ body {
 	align-items: center;
 }
 
-.calculator {
-	
+.calc {
+	border: 2px solid black;
+	border-radius: 5px 5px 20px 5px;
+	height: 500px;
+	width: 400px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	padding: 7px;
+}
+
+.display {
+	flex: 1;
+
+	display: flex;
+	justify-content: flex-end;
+	align-content: flex-end;
+}
+
+.buttons {
+	flex: 2;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: stretch;
+}
+
+.button-row {
+	flex: 1;
+
+	display: flex;
+}
+
+button {
+	flex: 1;
 }

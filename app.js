@@ -56,4 +56,7 @@ numButtons.forEach((element) => {
 	});
 });
 
+const clearButton = document.querySelector(".ac-btn");
+clearButton.addEventListener("click", clearDisplay);
+
 clearDisplay();

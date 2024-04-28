@@ -73,7 +73,7 @@ function processInput(op) {
 	}
 
 	console.log(displayValue);
-	firstNum = parseInt(displayValue);
+	firstNum = parseFloat(displayValue);
 	console.log(firstNum);
 	operator = op;
 	waitingForSecondNum = true;
@@ -81,13 +81,14 @@ function processInput(op) {
 }
 
 function calculate() {
+	if (displayValue === "") return;
 	if (!waitingForSecondNum) return;
 
-	secondNum = parseInt(displayValue);
+	secondNum = parseFloat(displayValue);
 	const result = operate(firstNum, secondNum, operator);
 	if (result === NaN) {
 		clearCalculator();
-		alert("ERROR: Result is NaN!");
+		alert("Result is NaN!");
 		return;
 	}
 	displayValue = result.toString();

@@ -1,6 +1,9 @@
+const displayElement = document.querySelector("#display-txt");
+
 let firstNum;
 let secondNum;
 let operator;
+let displayValue = "";
 
 function add(a, b) {
 	return a + b;
@@ -33,3 +36,24 @@ function operate(a, b, op) {
 			return NaN;
 	}
 }
+
+function clearDisplay() {
+	displayValue = "";
+	displayElement.textContent = displayValue;
+}
+
+function populateDisplay(str) {
+	displayValue += str;
+	displayElement.textContent = displayValue;
+}
+
+const numButtons = document.querySelectorAll(".num-btn");
+
+numButtons.forEach((element) => {
+	element.addEventListener("click", (event) => {
+		// Add the num that's written inside the button to the display
+		populateDisplay(element.textContent);
+	});
+});
+
+clearDisplay();

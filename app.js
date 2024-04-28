@@ -25,7 +25,6 @@ function div(a, b) {
 }
 
 function operate(a, b, op) {
-	console.log(op);
 	let result = NaN;
 	switch (op) {
 		case "+":
@@ -38,6 +37,10 @@ function operate(a, b, op) {
 			result = mul(a, b);
 			break;
 		case "/":
+			if (b === 0) {
+				alert("You can't divide by zero!");
+				return NaN;
+			}
 			result = div(a, b);
 			break;
 		default:
@@ -98,7 +101,6 @@ function calculate() {
 	const result = operate(firstNum, secondNum, operator);
 	if (result === NaN) {
 		clearCalculator();
-		alert("Result is NaN!");
 		return;
 	}
 	displayValue = result.toString();

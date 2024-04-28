@@ -1,3 +1,4 @@
+const DECIMAL_ROUNDING = 6;
 const displayElement = document.querySelector("#display-txt");
 
 let firstNum = NaN;
@@ -24,22 +25,33 @@ function div(a, b) {
 }
 
 function operate(a, b, op) {
-	console.log(a);
-	console.log(b);
 	console.log(op);
+	let result = NaN;
 	switch (op) {
 		case "+":
-			return add(a, b);
+			result = add(a, b);
+			break;
 		case "-":
-			return sub(a, b);
+			result = sub(a, b);
+			break;
 		case "*":
-			return mul(a, b);
+			result = mul(a, b);
+			break;
 		case "/":
-			return div(a, b);
+			result = div(a, b);
+			break;
 		default:
 			console.error("UNKNOWN OPERATOR: (" + op + ")");
 			return NaN;
 	}
+
+	// This rounds the result
+	if (result != NaN)
+		result =
+			Math.floor(result * Math.pow(10, DECIMAL_ROUNDING)) /
+			Math.pow(10, DECIMAL_ROUNDING);
+
+	return result;
 }
 
 // This clears the display only
@@ -72,9 +84,7 @@ function processInput(op) {
 		return;
 	}
 
-	console.log(displayValue);
 	firstNum = parseFloat(displayValue);
-	console.log(firstNum);
 	operator = op;
 	waitingForSecondNum = true;
 	clearDisplay();
@@ -118,4 +128,4 @@ clearButton.addEventListener("click", clearCalculator);
 const equalsButton = document.querySelector(".eq-btn");
 equalsButton.addEventListener("click", calculate);
 
-clearDisplay();
+clearCalculator();

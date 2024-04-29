@@ -1,11 +1,14 @@
 const DECIMAL_ROUNDING = 6;
 const displayElement = document.querySelector("#display-txt");
+const numButtons = document.querySelectorAll(".num-btn");
+const equalsButton = document.querySelector(".eq-btn");
+const clearButton = document.querySelector(".ac-btn");
+const operationButtons = document.querySelectorAll(".op-btn");
 
 let firstNum = NaN;
 let secondNum = NaN;
 let operator = "";
 let displayValue = "";
-
 let waitingForSecondNum = false;
 
 function add(a, b) {
@@ -57,6 +60,12 @@ function operate(a, b, op) {
 	return result;
 }
 
+function isDisplayANumber() {
+	const num = parseFloat(displayValue);
+
+	return num !== NaN;
+}
+
 // This clears the display only
 function clearDisplay() {
 	displayValue = "";
@@ -72,25 +81,9 @@ function clearCalculator() {
 }
 
 function populateDisplay(str) {
-	if (displayValue === "NaN") clearDisplay();
+	if (!isDisplayANumber) clearDisplay();
 	displayValue += str;
 	displayElement.textContent = displayValue;
-}
-
-// triggers on operator button click
-function processInput(op) {
-	// If the input is empty just return
-	if (displayValue === "") return;
-
-	if (waitingForSecondNum) {
-		calculate();
-		return;
-	}
-
-	firstNum = parseFloat(displayValue);
-	operator = op;
-	waitingForSecondNum = true;
-	clearDisplay();
 }
 
 function calculate() {
@@ -109,25 +102,40 @@ function calculate() {
 	waitingForSecondNum = false;
 }
 
-const numButtons = document.querySelectorAll(".num-btn");
-numButtons.forEach((element) => {
-	element.addEventListener("click", (_) => {
-		// Add the num that's written inside the button to the display
-		populateDisplay(element.textContent);
+// triggers on clicking an operator button
+function processInput(op) {
+	// If the input is empty just return
+	if (displayValue === "") return;
+
+	if (waitingForSecondNum) {
+		calculate();
+		return;
+	}
+
+	firstNum = parseFloat(displayValue);
+	operator = op;
+	waitingForSecondNum = true;
+	clearDisplay();
+}
+
+function addButtonEvents() {
+	numButtons.forEach((element) => {
+		element.addEventListener("click", (_) => {
+			// Add the num that's written inside the button to the display
+			populateDisplay(element.textContent);
+		});
 	});
-});
 
-const operationButtons = document.querySelectorAll(".op-btn");
-operationButtons.forEach((element) => {
-	element.addEventListener("click", (_) => {
-		processInput(element.textContent);
+	operationButtons.forEach((element) => {
+		element.addEventListener("click", (_) => {
+			processInput(element.textContent);
+		});
 	});
-});
 
-const clearButton = document.querySelector(".ac-btn");
-clearButton.addEventListener("click", clearCalculator);
+	clearButton.addEventListener("click", clearCalculator);
 
-const equalsButton = document.querySelector(".eq-btn");
-equalsButton.addEventListener("click", calculate);
+	equalsButton.addEventListener("click", calculate);
+}
 
+addButtonEvents();
 clearCalculator();

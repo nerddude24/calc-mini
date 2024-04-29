@@ -60,16 +60,19 @@ function operate(a, b, op) {
 	return result;
 }
 
-function isDisplayANumber() {
-	const num = parseFloat(displayValue);
+function isNumber(str) {
+	// the display must be different than NaN
+	return !isNaN(parseFloat(str));
+}
 
-	return num !== NaN;
+function updateDisplay(str) {
+	displayValue = str;
+	displayElement.textContent = displayValue;
 }
 
 // This clears the display only
 function clearDisplay() {
-	displayValue = "";
-	displayElement.textContent = displayValue;
+	updateDisplay("");
 }
 
 // This clears everything
@@ -81,9 +84,8 @@ function clearCalculator() {
 }
 
 function populateDisplay(str) {
-	if (!isDisplayANumber) clearDisplay();
-	displayValue += str;
-	displayElement.textContent = displayValue;
+	if (!isNumber(displayElement.textContent)) clearDisplay();
+	updateDisplay(displayValue + str);
 }
 
 function calculate() {
@@ -96,8 +98,7 @@ function calculate() {
 		clearCalculator();
 		return;
 	}
-	displayValue = result.toString();
-	displayElement.textContent = displayValue;
+	updateDisplay(result.toString());
 	operator = "";
 	waitingForSecondNum = false;
 }

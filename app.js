@@ -1,9 +1,12 @@
 const DECIMAL_ROUNDING = 6;
+
+/*  DOM Element constants  */
 const displayElement = document.querySelector("#display-txt");
 const numButtons = document.querySelectorAll(".num-btn");
 const equalsButton = document.querySelector(".eq-btn");
 const clearButton = document.querySelector(".ac-btn");
 const operationButtons = document.querySelectorAll(".op-btn");
+/*-------------------------*/
 
 let firstNum = NaN;
 let secondNum = NaN;
@@ -11,6 +14,7 @@ let operator = "";
 let displayValue = "";
 let waitingForSecondNum = false;
 
+/* The four basic mathematical functions */
 function add(a, b) {
 	return a + b;
 }
@@ -26,9 +30,11 @@ function mul(a, b) {
 function div(a, b) {
 	return a / b;
 }
+/* ------------------------- */
 
 function operate(a, b, op) {
 	let result = NaN;
+
 	switch (op) {
 		case "+":
 			result = add(a, b);
@@ -51,7 +57,7 @@ function operate(a, b, op) {
 			return NaN;
 	}
 
-	// This rounds the result
+	// Round the result if it's a number, It has no effect if the number is an integer.
 	if (result != NaN)
 		result =
 			Math.floor(result * Math.pow(10, DECIMAL_ROUNDING)) /
@@ -60,22 +66,23 @@ function operate(a, b, op) {
 	return result;
 }
 
-function isNumber(str) {
-	// the display must be different than NaN
-	return !isNaN(parseFloat(str));
+// This is Basically the opposite of isNaN, and it also works with strings and numbers.
+function isNumber(val) {
+	return !isNaN(parseFloat(val.toString()));
 }
 
+// Update the display to the passed string.
 function updateDisplay(str) {
 	displayValue = str;
 	displayElement.textContent = displayValue;
 }
 
-// This clears the display only
+// This only clears the display.
 function clearDisplay() {
 	updateDisplay("");
 }
 
-// This clears everything
+// This clears and resets everything.
 function clearCalculator() {
 	clearDisplay();
 	firstNum = NaN;
@@ -83,8 +90,12 @@ function clearCalculator() {
 	operator = "";
 }
 
+// Used by number buttons.
 function populateDisplay(str) {
+	// if the display is NaN, clear the display so that it only contains numbers.
 	if (!isNumber(displayElement.textContent)) clearDisplay();
+
+	// add the number that's written in the button to the display.
 	updateDisplay(displayValue + str);
 }
 
@@ -94,13 +105,13 @@ function calculate() {
 
 	secondNum = parseFloat(displayValue);
 	const result = operate(firstNum, secondNum, operator);
-	if (result === NaN) {
-		clearCalculator();
-		return;
-	}
+	clearCalculator();
 	updateDisplay(result.toString());
-	operator = "";
-	waitingForSecondNum = false;
+
+	// set the first number to the result so that the user can operate on it,
+	// if result is NaN then the first number will also be NaN, just like it was
+	// at the start of the application.
+	firstNum = result;
 }
 
 // triggers on clicking an operator button
@@ -113,10 +124,13 @@ function processInput(op) {
 		return;
 	}
 
+	// we don't have the first number so we store it and the operator
 	firstNum = parseFloat(displayValue);
 	operator = op;
-	waitingForSecondNum = true;
+
+	// we clear the display and wait for second input
 	clearDisplay();
+	waitingForSecondNum = true;
 }
 
 function addButtonEvents() {
@@ -129,6 +143,9 @@ function addButtonEvents() {
 
 	operationButtons.forEach((element) => {
 		element.addEventListener("click", (_) => {
+			// The operator is the text content of the button (for example "+")
+			// This should be fine unless the client changes the html of the page,
+			// but even if he does then the operator will be changed to another one or it will error.
 			processInput(element.textContent);
 		});
 	});

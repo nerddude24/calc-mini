@@ -20,7 +20,7 @@ body {
 .calc {
 	border: 2px solid white;
 	background-color: black;
-	border-radius: 5px 5px 20px 5px;
+	border-radius: 0px 0px 20px 0px;
 	height: 600px;
 	width: 500px;
 

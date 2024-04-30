@@ -3,9 +3,10 @@ const DECIMAL_ROUNDING = 6;
 /*  DOM Element constants  */
 const displayElement = document.querySelector("#display-txt");
 const numButtons = document.querySelectorAll(".num-btn");
+const operationButtons = document.querySelectorAll(".op-btn");
 const equalsButton = document.querySelector(".eq-btn");
 const clearButton = document.querySelector(".ac-btn");
-const operationButtons = document.querySelectorAll(".op-btn");
+const backspaceButton = document.querySelector(".back-btn");
 /*-------------------------*/
 
 let firstNum = NaN;
@@ -141,6 +142,18 @@ function processInput(op) {
 	waitingForSecondNum = true;
 }
 
+function backspace() {
+	if (displayValue === "") return;
+
+	let newDisplayValue = displayValue.slice(0, -1);
+
+	// Also remove trailing floating point to avoid errors
+	if (newDisplayValue.endsWith("."))
+		newDisplayValue = newDisplayValue.slice(0, -1);
+
+	updateDisplay(newDisplayValue);
+}
+
 function addButtonEvents() {
 	numButtons.forEach((element) => {
 		element.addEventListener("click", (_) => {
@@ -161,6 +174,8 @@ function addButtonEvents() {
 	clearButton.addEventListener("click", clearCalculator);
 
 	equalsButton.addEventListener("click", calculate);
+
+	backspaceButton.addEventListener("click", backspace);
 }
 
 addButtonEvents();

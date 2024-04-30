@@ -88,6 +88,7 @@ function clearCalculator() {
 	firstNum = NaN;
 	secondNum = NaN;
 	operator = "";
+	waitingForSecondNum = false;
 }
 
 // Used by number buttons.

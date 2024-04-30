@@ -60,6 +60,7 @@ button {
 	flex: 1;
 	font-size: 28px;
 	border: 1px solid black;
+	cursor: pointer;
 }
 
 button:hover {

@@ -23,6 +23,7 @@ body {
 	border-radius: 0px 0px 20px 0px;
 	height: 700px;
 	width: 500px;
+	padding: 5px;
 
 	display: flex;
 	flex-direction: column;
@@ -31,6 +32,10 @@ body {
 
 .display {
 	background-color: skyblue;
+
+	box-sizing: content-box;
+	padding: 20px;
+	border: 10px solid black;
 
 	flex: 1;
 	display: flex;
@@ -59,7 +64,8 @@ body {
 button {
 	flex: 1;
 	font-size: 28px;
-	border: 1px solid black;
+	border: 2px solid black;
+	border-radius: 4px;
 	cursor: pointer;
 }
 

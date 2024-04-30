@@ -13,7 +13,6 @@ body {
 	background-color: black;
 
 	display: flex;
-
 	justify-content: center;
 	align-items: center;
 }
@@ -55,11 +54,16 @@ body {
 }
 
 button {
-	font-size: 28px;
-
 	flex: 1;
+
+	font-size: 28px;
 }
 
-.eq-btn {
+button.ac-btn,
+button.back-btn {
+	background-color: orange;
+}
+
+button.eq-btn {
 	border-bottom-right-radius: 20px;
 }

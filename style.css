@@ -31,7 +31,7 @@ body {
 }
 
 .display {
-	background-color: skyblue;
+	background-color: #11e3eb;
 
 	box-sizing: content-box;
 	padding: 20px;
@@ -79,12 +79,12 @@ button:active {
 
 button.ac-btn,
 button.back-btn {
-	background-color: orange;
+	background-color: #eb662f;
 }
 
 button.op-btn,
 button.eq-btn {
-	background-color: rgb(74, 74, 74);
+	background-color: #413b38;
 	color: white;
 }
 

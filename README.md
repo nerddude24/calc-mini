@@ -1,6 +1,6 @@
-# Foobar
+# calc-mini
 
-calc-mini is a calculator web application made for The Odin Project
+a calculator web application made for The Odin Project
 
 ## Running
 

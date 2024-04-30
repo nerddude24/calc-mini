@@ -121,7 +121,11 @@ function calculate() {
 // triggers on clicking an operator button
 function processInput(op) {
 	// If the input is empty just return
-	if (displayValue === "") return;
+	if (displayValue === "") {
+		// Change the operator even if the display is empty
+		if (waitingForSecondNum) operator = op;
+		return;
+	}
 
 	if (waitingForSecondNum) {
 		calculate();

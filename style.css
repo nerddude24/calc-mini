@@ -57,11 +57,26 @@ button {
 	flex: 1;
 
 	font-size: 28px;
+	border: 1px solid black;
+}
+
+button:hover {
+	filter: brightness(85%);
+}
+
+button:active {
+	filter: brightness(50%);
 }
 
 button.ac-btn,
 button.back-btn {
 	background-color: orange;
+}
+
+button.op-btn,
+button.eq-btn {
+	background-color: rgb(74, 74, 74);
+	color: white;
 }
 
 button.eq-btn {

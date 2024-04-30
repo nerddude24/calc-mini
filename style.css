@@ -60,6 +60,6 @@ button {
 	flex: 1;
 }
 
-#eq-btn {
+.eq-btn {
 	border-bottom-right-radius: 20px;
 }

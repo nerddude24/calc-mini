@@ -64,11 +64,11 @@ button {
 }
 
 button:hover {
-	filter: brightness(85%);
+	filter: brightness(90%);
 }
 
 button:active {
-	filter: brightness(50%);
+	filter: brightness(70%);
 }
 
 button.ac-btn,

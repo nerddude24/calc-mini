@@ -97,8 +97,12 @@ function populateDisplay(str) {
 	// if the display is NaN, clear the display so that it only contains numbers.
 	if (!isNumber(displayElement.textContent)) clearDisplay();
 
-	// if the input is a floating point and there is already one on the display, return.
-	if (str === "." && displayValue.includes(".")) return;
+	if (str === ".") {
+		// if the input is a floating point and there is already one on the display, return.
+		if (displayValue.includes(".")) return;
+		// if display is empty, add a zero before the floating point.
+		else if (displayValue === "") str = "0.";
+	}
 
 	// add the number that's written in the button to the display.
 	updateDisplay(displayValue + str);

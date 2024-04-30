@@ -1,6 +1,6 @@
 # calc-mini
 
-a calculator web application made for The Odin Project
+A working minimalistic web calculator made for [The Odin Project](https://www.theodinproject.com/).
 
 ## Running
 

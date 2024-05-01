@@ -182,5 +182,52 @@ function addButtonEvents() {
 	backspaceButton.addEventListener("click", backspace);
 }
 
+function setupKeyboardInput() {
+	window.addEventListener(
+		"keydown",
+		(event) => {
+			if (event.defaultPrevented) {
+				return; // Do nothing if the event was already processed
+			}
+
+			// Check if the pressed key is a number or floating point
+			const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+			if (numbers.includes(event.key)) populateDisplay(event.key);
+			else {
+				// Else check for other keys
+				switch (event.key) {
+					case "Backspace":
+						backspace();
+						break;
+					case "+":
+						processInput("+");
+						break;
+					case "-":
+						processInput("-");
+						break;
+					case "*":
+						processInput("*");
+						break;
+					case "/":
+						processInput("/");
+						break;
+					case "Enter":
+						calculate();
+						break;
+					default:
+						return; // Quit when this doesn't handle the key event.
+				}
+			}
+
+			// Cancel the default action to avoid it being handled twice
+			event.preventDefault();
+		},
+		true
+	);
+	// the last option dispatches the event to the listener first,
+	// then dispatches event to window
+}
+
 addButtonEvents();
+setupKeyboardInput();
 clearCalculator();
